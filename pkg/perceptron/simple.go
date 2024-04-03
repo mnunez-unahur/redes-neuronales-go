@@ -42,6 +42,8 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, epocas int)
 	err := 1
 	errorMin := 2 * p
 
+	var w []float32 = per.w
+
 	// repetir las iteracciones la cantidad de épocas indicadas
 	for i := 0; i < cota; i++ {
 		// ix := rand.Intn(p)
@@ -54,7 +56,7 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, epocas int)
 		// agrego una dimensión adicional para el umbral
 		xExtendido := append(x[ix], 1)
 		deltaW := productoEscalar(correccion, xExtendido)
-		per.w = sumaMatriz(per.w, deltaW)
+		w = sumaMatriz(w, deltaW)
 
 		err = calculateError(diferencia)
 		if err < errorMin {
@@ -65,13 +67,14 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, epocas int)
 		// 	fmt.Printf("i:%2d | ix:%2d | x[ix]: %v| y[ix]:%2d | O:%2d | dif:%2d | corr:%2.2f| nuevo w:%v | deltaW:%v \n", i, ix, x[ix], y[ix], O, diferencia, correccion, per.w, deltaW)
 		// }
 	}
+	per.w = w
 }
 
 func (per *PerceptronSimple) Calcular(entradas []float32) int {
 	x := append(entradas, 1)
 	h := calcularExcitacion(x, per.w)
 	// fmt.Println(h, x, per.w)
-	return signo(h)
+	return per.signo(h)
 }
 
 // PesosSinapticos retorna los pesos sinápticos actuales
@@ -86,7 +89,7 @@ func calcularExcitacion(e, w []float32) (h float32) {
 	return h
 }
 
-func signo(h float32) int {
+func (per *PerceptronSimple) signo(h float32) int {
 	var ret int = -1
 	if h >= 0 {
 		ret = 1
