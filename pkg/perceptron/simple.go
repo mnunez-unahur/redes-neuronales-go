@@ -2,14 +2,14 @@
 package perceptron
 
 import (
-	"fmt"
-	// "math/rand"
+// "fmt"
+// "math/rand"
 )
 
 func NewPerceptronSimple(cantEntradas int) PerceptronSimple {
 	// inicializo la lista de pesos sinápticos
 	w := make([]float32, cantEntradas)
-	w = append(w, 1)
+	w = append(w, -1)
 
 	return PerceptronSimple{
 		w:            w,
@@ -61,14 +61,14 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, epocas int)
 			errorMin = err
 		}
 
-		if diferencia != 0 {
-			fmt.Printf("i:%2d | ix:%2d | x[ix]: %v| y[ix]:%2d | O:%2d | dif:%2d | corr:%2.2f| nuevo w:%v | deltaW:%v \n", i, ix, x[ix], y[ix], O, diferencia, correccion, per.w, deltaW)
-		}
+		// if diferencia != 0 {
+		// 	fmt.Printf("i:%2d | ix:%2d | x[ix]: %v| y[ix]:%2d | O:%2d | dif:%2d | corr:%2.2f| nuevo w:%v | deltaW:%v \n", i, ix, x[ix], y[ix], O, diferencia, correccion, per.w, deltaW)
+		// }
 	}
 }
 
 func (per *PerceptronSimple) Calcular(entradas []float32) int {
-	x := append(entradas, -1)
+	x := append(entradas, 1)
 	h := calcularExcitacion(x, per.w)
 	// fmt.Println(h, x, per.w)
 	return signo(h)
