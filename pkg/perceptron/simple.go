@@ -20,12 +20,14 @@ func NewPerceptronSimple(cantEntradas int) PerceptronSimple {
 // PerceptronSimple representa un perceptron simple de activación por escalón
 type PerceptronSimple struct {
 	// w es la lista de pesos sinápticos del perceptron
-	w            []float32
-	cantEntradas int
+	w                []float32
+	cantEntradas     int
+	confiabilidad    float32
+	epocasEntranadas int
 }
 
 // Entrenar entrena al perceptron con las muestras proprocionadas
-func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, epocas int) {
+func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, maxEpocas int, minConfiabilidad int) {
 	// constante de proporcionalidad
 	const n float32 = 0.01
 
@@ -36,50 +38,63 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, epocas int)
 	// agrego una nueva dimensión para el umbral a cada muestra
 	x = append(x, entradas...)
 
-	// la cantidad máxima de itereracciones
-	cota := epocas * p
-
-	err := 1
-	errorMin := 2 * p
-
 	var w []float32 = per.w
 
 	// repetir las iteracciones la cantidad de épocas indicadas
-	for i := 0; i < cota; i++ {
-		// ix := rand.Intn(p)
-		ix := i % p
+	for e := 0; e < maxEpocas; e++ {
+		cantOk := 0
 
-		O := per.Calcular(x[ix])
-		diferencia := y[ix] - O
-		correccion := n * float32(diferencia)
+		for i := 0; i < p; i++ {
+			// ix := rand.Intn(p)
+			ix := i % p
 
-		// agrego una dimensión adicional para el umbral
-		xExtendido := append(x[ix], 1)
-		deltaW := productoEscalar(correccion, xExtendido)
-		w = sumaMatriz(w, deltaW)
+			O := per.Calcular(x[ix])
+			diferencia := y[ix] - O
+			correccion := n * float32(diferencia)
+			if diferencia == 0 {
+				cantOk++
+			}
 
-		err = calculateError(diferencia)
-		if err < errorMin {
-			errorMin = err
+			// agrego una dimensión adicional para el umbral
+			xExtendido := append(x[ix], 1)
+			deltaW := productoEscalar(correccion, xExtendido)
+			w = sumaMatriz(w, deltaW)
+			per.w = w
+		}
+		per.epocasEntranadas++
+		confiabilidadEpoca := float32(cantOk) / float32(p)
+
+		if confiabilidadEpoca > per.confiabilidad {
+			per.confiabilidad = confiabilidadEpoca
+			// actualizo el peso sináptico
 		}
 
-		// if diferencia != 0 {
-		// 	fmt.Printf("i:%2d | ix:%2d | x[ix]: %v| y[ix]:%2d | O:%2d | dif:%2d | corr:%2.2f| nuevo w:%v | deltaW:%v \n", i, ix, x[ix], y[ix], O, diferencia, correccion, per.w, deltaW)
-		// }
+		if per.confiabilidad >= float32(minConfiabilidad) {
+			break
+		}
+
 	}
-	per.w = w
 }
 
 func (per *PerceptronSimple) Calcular(entradas []float32) int {
 	x := append(entradas, 1)
 	h := calcularExcitacion(x, per.w)
-	// fmt.Println(h, x, per.w)
 	return per.signo(h)
 }
 
 // PesosSinapticos retorna los pesos sinápticos actuales
 func (p *PerceptronSimple) PesosSinapticos() []float32 {
 	return p.w
+}
+
+// PesosSinapticos retorna los pesos sinápticos actuales
+func (p *PerceptronSimple) EpocasEntrenadas() int {
+	return p.epocasEntranadas
+}
+
+// PesosSinapticos retorna los pesos sinápticos actuales
+func (p *PerceptronSimple) Confiabilidad() float32 {
+	return p.confiabilidad
 }
 
 func calcularExcitacion(e, w []float32) (h float32) {
@@ -114,12 +129,4 @@ func sumaMatriz(a, b []float32) (r []float32) {
 	}
 	return r
 
-}
-
-func calculateError(diferencia int) int {
-	err := diferencia
-	if diferencia < 0 {
-		err *= -1
-	}
-	return err
 }
