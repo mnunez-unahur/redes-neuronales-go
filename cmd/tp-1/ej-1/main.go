@@ -30,17 +30,17 @@ func main() {
 	// pEjemplo.Entrenar(muestras, valoresEsperados, 10, 1)
 	// fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pEjemplo.EpocasEntrenadas(), pEjemplo.Confiabilidad())
 
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pEjemplo.Calcular(muestras[0]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pEjemplo.Calcular(muestras[1]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pEjemplo.Calcular(muestras[2]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pEjemplo.Calcular(muestras[3]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[4], valoresEsperados[4], pEjemplo.Calcular(muestras[4]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[5], valoresEsperados[5], pEjemplo.Calcular(muestras[5]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[6], valoresEsperados[6], pEjemplo.Calcular(muestras[6]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[7], valoresEsperados[7], pEjemplo.Calcular(muestras[7]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[8], valoresEsperados[8], pEjemplo.Calcular(muestras[8]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[9], valoresEsperados[9], pEjemplo.Calcular(muestras[9]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[10], valoresEsperados[10], pEjemplo.Calcular(muestras[10]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pEjemplo.CalcularSalida(muestras[0]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pEjemplo.CalcularSalida(muestras[1]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pEjemplo.CalcularSalida(muestras[2]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pEjemplo.CalcularSalida(muestras[3]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[4], valoresEsperados[4], pEjemplo.CalcularSalida(muestras[4]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[5], valoresEsperados[5], pEjemplo.CalcularSalida(muestras[5]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[6], valoresEsperados[6], pEjemplo.CalcularSalida(muestras[6]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[7], valoresEsperados[7], pEjemplo.CalcularSalida(muestras[7]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[8], valoresEsperados[8], pEjemplo.CalcularSalida(muestras[8]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[9], valoresEsperados[9], pEjemplo.CalcularSalida(muestras[9]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[10], valoresEsperados[10], pEjemplo.CalcularSalida(muestras[10]))
 
 	fmt.Println("calculando Función Lógica 'Y'")
 	muestras := [][]float32{
@@ -51,10 +51,10 @@ func main() {
 	pAnd.Entrenar(muestras, valoresEsperados, 1000, 1)
 	fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pAnd.EpocasEntrenadas(), pAnd.Confiabilidad())
 
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pAnd.Calcular(muestras[0]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pAnd.Calcular(muestras[1]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pAnd.Calcular(muestras[2]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pAnd.Calcular(muestras[3]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pAnd.CalcularSalida(muestras[0]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pAnd.CalcularSalida(muestras[1]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pAnd.CalcularSalida(muestras[2]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pAnd.CalcularSalida(muestras[3]))
 
 	fmt.Println("calculando Función Lógica 'O'")
 	valoresEsperados = []int{1, 1, 1, -1}
@@ -62,21 +62,21 @@ func main() {
 	pOr.Entrenar(muestras, valoresEsperados, 1000, 1)
 	fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pOr.EpocasEntrenadas(), pOr.Confiabilidad())
 
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pOr.Calcular(muestras[0]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pOr.Calcular(muestras[1]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pOr.Calcular(muestras[2]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pOr.Calcular(muestras[3]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pOr.CalcularSalida(muestras[0]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pOr.CalcularSalida(muestras[1]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pOr.CalcularSalida(muestras[2]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pOr.CalcularSalida(muestras[3]))
 
-	// fmt.Println("calculando Función Lógica '=>'")
-	// valoresEsperados = []int{1, -1, 1, 1}
-	// pImplicacion := perceptron.NewPerceptronSimple(2)
-	// pImplicacion.Entrenar(muestras, valoresEsperados, 100, 1)
-	// fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pImplicacion.EpocasEntrenadas(), pImplicacion.Confiabilidad())
+	fmt.Println("calculando Función Lógica '=>'")
+	valoresEsperados = []int{1, 1, -1, 1}
+	pImplicacion := perceptron.NewPerceptronSimple(2)
+	pImplicacion.Entrenar(muestras, valoresEsperados, 100, 1)
+	fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pImplicacion.EpocasEntrenadas(), pImplicacion.Confiabilidad())
 
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pImplicacion.Calcular(muestras[0]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pImplicacion.Calcular(muestras[1]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pImplicacion.Calcular(muestras[2]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pImplicacion.Calcular(muestras[3]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pImplicacion.CalcularSalida(muestras[0]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pImplicacion.CalcularSalida(muestras[1]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pImplicacion.CalcularSalida(muestras[2]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pImplicacion.CalcularSalida(muestras[3]))
 
 	fmt.Println("calculando Función Lógica 'XOR'")
 	pXor := perceptron.NewPerceptronSimple(2)
@@ -85,10 +85,10 @@ func main() {
 	pXor.Entrenar(muestras, valoresEsperados, 100, 1)
 	fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pXor.EpocasEntrenadas(), pXor.Confiabilidad())
 
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pXor.Calcular(muestras[0]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pXor.Calcular(muestras[1]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pXor.Calcular(muestras[2]))
-	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pXor.Calcular(muestras[3]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pXor.CalcularSalida(muestras[0]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pXor.CalcularSalida(muestras[1]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pXor.CalcularSalida(muestras[2]))
+	fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pXor.CalcularSalida(muestras[3]))
 
 	// muestras = [][]float32{
 	// 	{2, 3},
@@ -121,16 +121,16 @@ func main() {
 	// pEjemplo.Entrenar(muestras, valoresEsperados, 100, 1)
 	// fmt.Printf("Epocas Entrenadas: %2d, Confiabilidad Máxima: %2.2f\n", pEjemplo.EpocasEntrenadas(), pEjemplo.Confiabilidad())
 
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pEjemplo.Calcular(muestras[0]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pEjemplo.Calcular(muestras[1]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pEjemplo.Calcular(muestras[2]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pEjemplo.Calcular(muestras[3]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[4], valoresEsperados[4], pEjemplo.Calcular(muestras[4]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[5], valoresEsperados[5], pEjemplo.Calcular(muestras[5]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[6], valoresEsperados[6], pEjemplo.Calcular(muestras[6]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[7], valoresEsperados[7], pEjemplo.Calcular(muestras[7]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[8], valoresEsperados[8], pEjemplo.Calcular(muestras[8]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[9], valoresEsperados[9], pEjemplo.Calcular(muestras[9]))
-	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[10], valoresEsperados[10], pEjemplo.Calcular(muestras[10]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[0], valoresEsperados[0], pEjemplo.CalcularSalida(muestras[0]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[1], valoresEsperados[1], pEjemplo.CalcularSalida(muestras[1]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[2], valoresEsperados[2], pEjemplo.CalcularSalida(muestras[2]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[3], valoresEsperados[3], pEjemplo.CalcularSalida(muestras[3]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[4], valoresEsperados[4], pEjemplo.CalcularSalida(muestras[4]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[5], valoresEsperados[5], pEjemplo.CalcularSalida(muestras[5]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[6], valoresEsperados[6], pEjemplo.CalcularSalida(muestras[6]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[7], valoresEsperados[7], pEjemplo.CalcularSalida(muestras[7]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[8], valoresEsperados[8], pEjemplo.CalcularSalida(muestras[8]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[9], valoresEsperados[9], pEjemplo.CalcularSalida(muestras[9]))
+	// fmt.Printf("%v\tesperado: %2d\tresultado: %2d\n", muestras[10], valoresEsperados[10], pEjemplo.CalcularSalida(muestras[10]))
 
 }

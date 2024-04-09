@@ -48,7 +48,7 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, maxEpocas i
 			// ix := rand.Intn(p)
 			ix := i % p
 
-			O := per.Calcular(x[ix])
+			O := per.CalcularSalida(x[ix])
 			diferencia := y[ix] - O
 			correccion := n * float32(diferencia)
 			if diferencia == 0 {
@@ -76,7 +76,7 @@ func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, maxEpocas i
 	}
 }
 
-func (per *PerceptronSimple) Calcular(entradas []float32) int {
+func (per *PerceptronSimple) CalcularSalida(entradas []float32) int {
 	x := append(entradas, 1)
 	h := calcularExcitacion(x, per.w)
 	return per.signo(h)
