@@ -4,7 +4,7 @@ import (
 	// "fmt"
 	"fmt"
 
-	"github.com/mnunez-unahur/redes-neuronales-go/pkg/perceptron"
+	perceptron "github.com/mnunez-unahur/redes-neuronales-go/pkg/perceptron_v2"
 )
 
 func main() {
@@ -13,8 +13,8 @@ func main() {
 		{1, 1}, {-1, 1}, {1, -1}, {-1, -1},
 	}
 	valoresEsperados := []float32{1, -1, -1, -1}
-	w, i := perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10)
-	salidas := perceptron.Clasificar(muestras, w)
+	w, i := perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10, perceptron.SignoPaso)
+	salidas := perceptron.Clasificar(muestras, w, perceptron.SignoPaso)
 	fmt.Printf("w: %v - i:%v\n", w, i)
 	for i := range muestras {
 		fmt.Printf("\t%v\t%2.0f\t%2.0f\n", muestras[i], valoresEsperados[i], salidas[i])
@@ -26,8 +26,8 @@ func main() {
 		{1, 1}, {-1, 1}, {1, -1}, {-1, -1},
 	}
 	valoresEsperados = []float32{1, 1, 1, -1}
-	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10)
-	salidas = perceptron.Clasificar(muestras, w)
+	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10, perceptron.SignoPaso)
+	salidas = perceptron.Clasificar(muestras, w, perceptron.SignoPaso)
 	fmt.Printf("w: %v - i:%v\n", w, i)
 	for i := range muestras {
 		fmt.Printf("\t%v\t%2.0f\t%2.0f\n", muestras[i], valoresEsperados[i], salidas[i])
@@ -39,8 +39,8 @@ func main() {
 		{1, 1}, {-1, 1}, {1, -1}, {-1, -1},
 	}
 	valoresEsperados = []float32{1, 1, -1, 1}
-	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10)
-	salidas = perceptron.Clasificar(muestras, w)
+	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10, perceptron.SignoPaso)
+	salidas = perceptron.Clasificar(muestras, w, perceptron.SignoPaso)
 	fmt.Printf("w: %v - i:%v\n", w, i)
 	for i := range muestras {
 		fmt.Printf("\t%v\t%2.0f\t%2.0f\n", muestras[i], valoresEsperados[i], salidas[i])
@@ -52,8 +52,8 @@ func main() {
 		{1, 1}, {-1, 1}, {1, -1}, {-1, -1},
 	}
 	valoresEsperados = []float32{-1, 1, 1, -1}
-	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10)
-	salidas = perceptron.Clasificar(muestras, w)
+	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10, perceptron.SignoPaso)
+	salidas = perceptron.Clasificar(muestras, w, perceptron.SignoPaso)
 	fmt.Printf("w: %v - i:%v\n", w, i)
 	for i := range muestras {
 		fmt.Printf("\t%v\t%2.0f\t%2.0f\n", muestras[i], valoresEsperados[i], salidas[i])
@@ -77,8 +77,8 @@ func main() {
 
 	valoresEsperados = []float32{1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1}
 
-	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10)
-	salidas = perceptron.Clasificar(muestras, w)
+	w, i = perceptron.Entrenar(muestras, valoresEsperados, len(muestras)*10, perceptron.SignoPaso)
+	salidas = perceptron.Clasificar(muestras, w, perceptron.SignoPaso)
 	fmt.Printf("w: %v - i:%v\n", w, i)
 	for i := range muestras {
 		fmt.Printf("\t%v\t%2.0f\t%2.0f\n", muestras[i], valoresEsperados[i], salidas[i])
