@@ -1,110 +1,65 @@
-// package perceptron implementa un perceptron
 package perceptron
 
 import (
-// "fmt"
-// "math/rand"
+	"math"
+	"math/rand"
 )
 
-func NewPerceptronSimple(cantEntradas int) PerceptronSimple {
-	// inicializo la lista de pesos sinápticos
-	w := make([]float32, cantEntradas)
+func Entrenar(x [][]float32, y []float32, cota int) ([]float32, int) {
+	p := len(x)
+	const n float32 = 0.1
+
+	w := make([]float32, len(x[0]))
 	w = append(w, -1)
+	wMin := w
 
-	return PerceptronSimple{
-		w:            w,
-		cantEntradas: cantEntradas,
-	}
-}
+	err := 1
+	errMin := 2 * p
 
-// PerceptronSimple representa un perceptron simple de activación por escalón
-type PerceptronSimple struct {
-	// w es la lista de pesos sinápticos del perceptron
-	w                []float32
-	cantEntradas     int
-	confiabilidad    float32
-	epocasEntranadas int
-}
+	i := 0
+	for i = 0; i < cota && err > 0; i++ {
+		ix := rand.Intn(p)
+		// ix := i % p
+		e := append(x[ix], 1)
 
-// Entrenar entrena al perceptron con las muestras proprocionadas
-func (per *PerceptronSimple) Entrenar(entradas [][]float32, y []int, maxEpocas int, minConfiabilidad int) {
-	// constante de proporcionalidad
-	const n float32 = 0.01
-
-	// p es la cantidad de muestras recibidas
-	p := len(entradas)
-
-	var x [][]float32
-	// agrego una nueva dimensión para el umbral a cada muestra
-	x = append(x, entradas...)
-
-	var w []float32 = per.w
-
-	// repetir las iteracciones la cantidad de épocas indicadas
-	for e := 0; e < maxEpocas; e++ {
-		cantOk := 0
-
-		for i := 0; i < p; i++ {
-			// ix := rand.Intn(p)
-			ix := i % p
-
-			O := per.CalcularSalida(x[ix])
-			diferencia := y[ix] - O
-			correccion := n * float32(diferencia)
-			if diferencia == 0 {
-				cantOk++
-			}
-
-			// agrego una dimensión adicional para el umbral
-			xExtendido := append(x[ix], 1)
-			deltaW := productoEscalar(correccion, xExtendido)
-			w = sumaMatriz(w, deltaW)
-			per.w = w
-		}
-		per.epocasEntranadas++
-		confiabilidadEpoca := float32(cantOk) / float32(p)
-
-		if confiabilidadEpoca > per.confiabilidad {
-			per.confiabilidad = confiabilidadEpoca
-			// actualizo el peso sináptico
-		}
-
-		if per.confiabilidad >= float32(minConfiabilidad) {
-			break
+		h := calcularExcitacion(e, w)
+		O := signo(h)
+		deltaW := productoEscalar(n*(float32(y[ix])-float32(O)), e)
+		w = sumaMatriz(w, deltaW)
+		err = calcularError(x, y, w)
+		if err < errMin {
+			errMin = err
+			wMin = w
 		}
 
 	}
+
+	return wMin, i
 }
 
-func (per *PerceptronSimple) CalcularSalida(entradas []float32) int {
-	x := append(entradas, 1)
-	h := calcularExcitacion(x, per.w)
-	return per.signo(h)
-}
+func Clasificar(e [][]float32, w []float32) []float32 {
+	p := len(e)
 
-// PesosSinapticos retorna los pesos sinápticos actuales
-func (p *PerceptronSimple) PesosSinapticos() []float32 {
-	return p.w
-}
+	var salidas []float32
 
-// PesosSinapticos retorna los pesos sinápticos actuales
-func (p *PerceptronSimple) EpocasEntrenadas() int {
-	return p.epocasEntranadas
-}
+	for i := 0; i < p; i++ {
+		x := append(e[i], 1)
+		h := calcularExcitacion(x, w)
+		O := float32(signo(h))
+		salidas = append(salidas, O)
+	}
 
-// PesosSinapticos retorna los pesos sinápticos actuales
-func (p *PerceptronSimple) Confiabilidad() float32 {
-	return p.confiabilidad
+	return salidas
 }
 
 func calcularExcitacion(e, w []float32) (h float32) {
-	for i := range e {
-		h += e[i] + w[i]
+	for i := range w {
+		h += e[i] * w[i]
 	}
 	return h
 }
 
-func (per *PerceptronSimple) signo(h float32) int {
+func signo(h float32) int {
 	var ret int = -1
 	if h >= 0 {
 		ret = 1
@@ -129,4 +84,16 @@ func sumaMatriz(a, b []float32) (r []float32) {
 	}
 	return r
 
+}
+
+func calcularError(entradas [][]float32, salidasEsperadas []float32, w []float32) int {
+	err := 0
+	p := len(entradas)
+	for i := 0; i < p; i++ {
+		x := append(entradas[i], 1)
+		h := calcularExcitacion(x, w)
+		O := signo(h)
+		err += int(math.Abs(float64(salidasEsperadas[i]) - float64(O)))
+	}
+	return err
 }
