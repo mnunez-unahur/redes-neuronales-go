@@ -6,23 +6,23 @@ import (
 	"math"
 )
 
-type Signo func(float32) float32
+type Activador func(float64) float64
 
-func SignoPaso(h float32) float32 {
-	var ret float32 = -1
+func ActivadorPaso(h float64) float64 {
+	var ret float64 = -1
 	if h >= 0 {
 		ret = 1
 	}
 	return ret
 }
 
-func SignoLineal(h float32) float32 {
+func ActivadorLineal(h float64) float64 {
 	return h
 }
 
-func Entrenar(x [][]float32, y []float32, cota int, signo Signo) ([]float32, int, error) {
+func Entrenar(x [][]float64, y []float64, cota int, signo Activador) ([]float64, int, error) {
 	p := len(x)
-	const n float32 = 0.1
+	const n float64 = 0.1
 
 	if len(x) == 0 {
 		return nil, 0, errors.New("no se proporcionaron valores de entrada")
@@ -31,12 +31,12 @@ func Entrenar(x [][]float32, y []float32, cota int, signo Signo) ([]float32, int
 		return nil, 0, errors.New("no se proporcionaron valores de salida")
 	}
 
-	w := make([]float32, len(x[0]))
+	w := make([]float64, len(x[0]))
 	w = append(w, -1)
 	wMin := w
 
-	var err float32 = 1.0
-	var errMin float32 = float32(2 * p)
+	var err float64 = 1.0
+	var errMin float64 = float64(2 * p)
 
 	i := 0
 	for i < cota && err > 0 {
@@ -46,7 +46,7 @@ func Entrenar(x [][]float32, y []float32, cota int, signo Signo) ([]float32, int
 
 			h := calcularExcitacion(e, w)
 			O := signo(h)
-			err += float32(math.Abs(float64(y[ix] - O)))
+			err += float64(math.Abs(float64(y[ix] - O)))
 			deltaW := productoEscalar(n*(y[ix]-O), e)
 			w = sumaMatriz(w, deltaW)
 			fmt.Println(e, y[ix], h, O, deltaW, w)
@@ -62,8 +62,8 @@ func Entrenar(x [][]float32, y []float32, cota int, signo Signo) ([]float32, int
 	return wMin, i, nil
 }
 
-func Clasificar(entradas [][]float32, w []float32, signo Signo) []float32 {
-	var salidas []float32
+func Clasificar(entradas [][]float64, w []float64, signo Activador) []float64 {
+	var salidas []float64
 
 	for _, e := range entradas {
 		x := append(e, 1)
@@ -75,7 +75,7 @@ func Clasificar(entradas [][]float32, w []float32, signo Signo) []float32 {
 	return salidas
 }
 
-func calcularExcitacion(e, w []float32) (h float32) {
+func calcularExcitacion(e, w []float64) (h float64) {
 	for i := range w {
 		h += e[i] * w[i]
 	}
@@ -83,8 +83,8 @@ func calcularExcitacion(e, w []float32) (h float32) {
 }
 
 // realiza el producto entre el escalar x y la matriz A
-func productoEscalar(x float32, A []float32) []float32 {
-	var B []float32
+func productoEscalar(x float64, A []float64) []float64 {
+	var B []float64
 	for i := range A {
 		B = append(B, A[i]*x)
 	}
@@ -92,7 +92,7 @@ func productoEscalar(x float32, A []float32) []float32 {
 	return B
 }
 
-func sumaMatriz(a, b []float32) (r []float32) {
+func sumaMatriz(a, b []float64) (r []float64) {
 
 	for i := range a {
 		r = append(r, a[i]+b[i])

@@ -25,23 +25,23 @@ func main() {
 		return
 	}
 
-	setEntrenamientoEntradas := entradas[0:150]
-	setEntrenamientoSalidas := salidasEsperadas[0:150]
+	setEntrenamientoEntradas := entradas[0:10]
+	setEntrenamientoSalidas := salidasEsperadas[0:10]
 
-	w, i, err := perceptron.Entrenar(setEntrenamientoEntradas, setEntrenamientoSalidas, len(entradas)*100, perceptron.SignoLineal)
+	w, i, err := perceptron.Entrenar(setEntrenamientoEntradas, setEntrenamientoSalidas, len(entradas)*1, perceptron.ActivadorLineal)
 	if err != nil {
 		fmt.Printf("Error al entrenar: %v\n", err)
 		return
 	}
 	fmt.Printf("w: %v - i:%v\n", w, i)
 
-	setPruebasEntradas := entradas[150:]
-	setPruebasSalidas := salidasEsperadas[150:]
+	// setPruebasEntradas := entradas[150:]
+	// setPruebasSalidas := salidasEsperadas[150:]
 
-	salidas := perceptron.Clasificar(setPruebasEntradas, w, perceptron.SignoLineal)
-	for i := range setPruebasEntradas {
-		fmt.Printf("\t%d\t%8v\t%2.4f\t%2.4f\n", i+1, setPruebasEntradas[i], setPruebasSalidas[i], salidas[i])
-	}
+	// salidas := perceptron.Clasificar(setPruebasEntradas, w, perceptron.ActivadorLineal)
+	// for i := range setPruebasEntradas {
+	// 	fmt.Printf("\t%d\t%8v\t%2.4f\t%2.4f\n", i+1, setPruebasEntradas[i], setPruebasSalidas[i], salidas[i])
+	// }
 	fmt.Println("")
 }
 
